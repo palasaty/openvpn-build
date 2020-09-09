@@ -31,9 +31,9 @@ main() {
 	cd "${TMPDIR}"
 	ln -s ${OPENVPN_PATH} openvpn
 	cd openvpn
-	#autoreconf -ivf || die "autoreconf.openvpn"
-	#./configure --disable-lzo --disable-lz4 || die "openvpn.configure"
-	#make dist || die "openvpn.dist"
+	autoreconf -ivf || die "autoreconf.openvpn"
+	./configure --disable-lzo --disable-lz4 || die "openvpn.configure"
+	make dist || die "openvpn.dist"
 	cd "${SCRIPTROOT}"
 	CONFIGURE_GIT_REVISION="`GIT_DIR="${TMPDIR}/openvpn/.git" ${GIT} rev-parse --symbolic-full-name HEAD`/`GIT_DIR="${TMPDIR}/openvpn/.git" ${GIT} rev-parse --short=16 HEAD`"
 
