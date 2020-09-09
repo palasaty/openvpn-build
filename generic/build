@@ -259,11 +259,11 @@ build_openvpn() {
 	#autoreconf -ivf # this allows to specify github url as OPENVPN_URL
 	CFLAGS="${CFLAGS} ${OPT_OPENVPN_CFLAGS}"
 	#./configure ${CONFIGOPTS} ${EXTRA_OPENVPN_CONFIG} \
-		$(empty_ifelse "${DO_STATIC}" --enable-pkcs11 --disable-plugins) \
-		--disable-lzo \
-		--disable-lz4 \
-		--with-special-build="${SPECIAL_BUILD}" \
-		|| die "Configure openvpn"
+#		$(empty_ifelse "${DO_STATIC}" --enable-pkcs11 --disable-plugins) \
+#		--disable-lzo \
+#		--disable-lz4 \
+#		--with-special-build="${SPECIAL_BUILD}" \
+#		|| die "Configure openvpn"
 	#${MAKE} ${MAKEOPTS} ${MAKE_AUTOCONF_INSTALL_TARGET} DESTDIR="${OPENVPN_ROOT}" || die "make openvpn"
 
 	cd "${SCRIPTROOT}"
