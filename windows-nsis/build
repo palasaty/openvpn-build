@@ -104,7 +104,7 @@ main() {
 		${EASYRSA_TARBALL:+-DUSE_EASYRSA} \
 		-DUSE_OPENVPN_GUI \
 		-DOUTPUT="${OUTPUT}" \
-		openvpn.nsi || die "makensis"
+		xxx.nsi || die "makensis"
 
 	codesign "${OUTPUT}"
 }

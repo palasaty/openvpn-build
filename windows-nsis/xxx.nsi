@@ -115,7 +115,7 @@ VIAddVersionKey "FileVersion" "1.0.0"
 ;--------------------------------
 ;Language Strings
 
-LangString DESC_SecOpenVPNUserSpace ${LANG_ENGLISH} "Install ${PACKAGE_NAME} user-space components, including openvpn.exe."
+LangString DESC_SecOpenVPNUserSpace ${LANG_ENGLISH} "Install ${PACKAGE_NAME} user-space components, including xxx.exe."
 
 LangString DESC_SecOpenVPNGUI ${LANG_ENGLISH} "Install ${PACKAGE_NAME} GUI by Mathias Sundman"
 
@@ -307,15 +307,15 @@ Section -pre
 
 		Sleep 3000
 
-		; check for running openvpn.exe processes
-		${nsProcess::FindProcess} "openvpn.exe" $R0
+		; check for running xxx.exe processes
+		${nsProcess::FindProcess} "xxx.exe" $R0
 		${If} $R0 == 0
 			MessageBox MB_OK|MB_ICONEXCLAMATION "The installation cannot continue as OpenVPN is currently running. Please close all OpenVPN instances and re-run the installer."
 			Call RestoreServiceState
 			Quit
 		${EndIf}
 
-		; openvpn.exe + GUI not running/closed successfully, carry on with install/upgrade
+		; xxx.exe + GUI not running/closed successfully, carry on with install/upgrade
 	
 		; Delete previous start menu folder
 		RMDir /r "$SMPROGRAMS\${PACKAGE_NAME}"
@@ -346,9 +346,9 @@ Section "${PACKAGE_NAME} User-Space Components" SecOpenVPNUserSpace
 
 	SetOutPath "$INSTDIR\bin"
 	${If} ${RunningX64}
-		File "${OPENVPN_ROOT_X86_64}\bin\openvpn.exe"
+		File "${OPENVPN_ROOT_X86_64}\bin\xxx.exe"
 	${Else}
-		File "${OPENVPN_ROOT_I686}\bin\openvpn.exe"
+		File "${OPENVPN_ROOT_I686}\bin\xxx.exe"
 	${EndIf}
 
 !ifdef TAPCTL_EXISTS
@@ -429,7 +429,7 @@ Function CoreSetup
 
 	${If} ${SectionIsSelected} ${SecAddShortcutsWorkaround}
 		CreateDirectory "$SMPROGRAMS\${PACKAGE_NAME}\Utilities"
-		CreateShortCut "$SMPROGRAMS\${PACKAGE_NAME}\Utilities\Generate a static ${PACKAGE_NAME} key.lnk" "$INSTDIR\bin\openvpn.exe" '--pause-exit --verb 3 --genkey --secret "$INSTDIR\config\key.txt"' "$INSTDIR\icon.ico" 0
+		CreateShortCut "$SMPROGRAMS\${PACKAGE_NAME}\Utilities\Generate a static ${PACKAGE_NAME} key.lnk" "$INSTDIR\bin\xxx.exe" '--pause-exit --verb 3 --genkey --secret "$INSTDIR\config\key.txt"' "$INSTDIR\icon.ico" 0
 		CreateDirectory "$SMPROGRAMS\${PACKAGE_NAME}\Shortcuts"
 		CreateShortCut "$SMPROGRAMS\${PACKAGE_NAME}\Shortcuts\${PACKAGE_NAME} Sample Configuration Files.lnk" "$INSTDIR\sample-config" ""
 		CreateShortCut "$SMPROGRAMS\${PACKAGE_NAME}\Shortcuts\${PACKAGE_NAME} log file directory.lnk" "$INSTDIR\log" ""
@@ -439,7 +439,7 @@ Function CoreSetup
 	; set registry parameters for services and GUI
 	!insertmacro WriteRegStringIfUndef HKLM "SOFTWARE\${PACKAGE_NAME}" "config_dir" "$INSTDIR\config" 
 	!insertmacro WriteRegStringIfUndef HKLM "SOFTWARE\${PACKAGE_NAME}" "config_ext"  "${OPENVPN_CONFIG_EXT}"
-	WriteRegStr HKLM "SOFTWARE\${PACKAGE_NAME}" "exe_path"    "$INSTDIR\bin\openvpn.exe"
+	WriteRegStr HKLM "SOFTWARE\${PACKAGE_NAME}" "exe_path"    "$INSTDIR\bin\xxx.exe"
 	!insertmacro WriteRegStringIfUndef HKLM "SOFTWARE\${PACKAGE_NAME}" "log_dir"     "$INSTDIR\log"
 	!insertmacro WriteRegStringIfUndef HKLM "SOFTWARE\${PACKAGE_NAME}" "priority"    "NORMAL_PRIORITY_CLASS"
 	!insertmacro WriteRegStringIfUndef HKLM "SOFTWARE\${PACKAGE_NAME}" "log_append"  "0"
@@ -586,7 +586,7 @@ SectionGroup "!Advanced"
 		WriteRegStr HKCR "${PACKAGE_NAME}File\DefaultIcon" "" "$INSTDIR\icon.ico,0"
 		WriteRegStr HKCR "${PACKAGE_NAME}File\shell\open\command" "" 'notepad.exe "%1"'
 		WriteRegStr HKCR "${PACKAGE_NAME}File\shell\run" "" "Start ${PACKAGE_NAME} on this config file"
-		WriteRegStr HKCR "${PACKAGE_NAME}File\shell\run\command" "" '"$INSTDIR\bin\openvpn.exe" --pause-exit --config "%1"'
+		WriteRegStr HKCR "${PACKAGE_NAME}File\shell\run\command" "" '"$INSTDIR\bin\xxx.exe" --pause-exit --config "%1"'
 	SectionEnd
 
 	Section /o "Add Shortcuts to Start Menu" SecAddShortcuts
@@ -852,7 +852,7 @@ Section "Uninstall"
 	Delete "$INSTDIR\bin\openvpn-gui.exe"
 	Delete "$DESKTOP\${PACKAGE_NAME} GUI.lnk"
 
-	Delete "$INSTDIR\bin\openvpn.exe"
+	Delete "$INSTDIR\bin\xxx.exe"
 	Delete "$INSTDIR\bin\openvpnserv.exe"
 	Delete "$INSTDIR\bin\openvpnserv2.exe"
 	Delete "$INSTDIR\bin\tapctl.exe"
