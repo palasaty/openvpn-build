@@ -397,7 +397,7 @@ CONFIGOPTS=" \
 	--program-prefix='' \
 "
 
-OPENVPN_ROOT="${IMAGEROOT}/openvpn"
+OPENVPN_ROOT="${IMAGEROOT}/xxx"
 
 if [ -z "${DO_NO_STRIP}" ]; then
 	MAKE_AUTOCONF_INSTALL_TARGET="install-strip"
